@@ -1,0 +1,38 @@
+#:kivy 1.11.0
+# File name: model/Screens.py
+#:import ExtractorScreen frontur_gui.model.Screens.ExtractorScreen
+#:include frontur_gui/view/FileExtractorMenu.kv
+#:include frontur_gui/view/FileSaveWidget.kv
+#:include frontur_gui/view/ComputeDialog.kv
+
+<ExtractorScreen>:
+    name: "extractor"
+    canvas.before:
+        Color:
+            rgba: 170, 166, 157,1.0
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        FileExtractorMenu:
+            id: menu
+            save_btn: save    
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: 1, 0.15
+            Button: 
+                on_release: 
+                    app.root.transition = NoTransition()
+                    app.root.current = "main"
+                text: "Volver"
+                font_size: (.1 * self.height) + (self.width * .1)
+            Button: 
+                on_release: 
+                    menu.run_extractor()                    
+                text: "Ejecutar"
+                font_size: (.1 * self.height) + (self.width * .1)
+            FileManagerSave:
+                id: save
+                disabled: True
+                font_size: (.1 * self.height) + (self.width * .1)

@@ -1,0 +1,40 @@
+#:kivy 1.11.0
+# File name: FileManagerLoad.py
+#:import FileManagerLoad frontur_gui.model.FileManagerLoad.FileManagerLoad
+#:import os os
+
+<FileManagerLoad>:
+    id: FileManagerLoad
+    size_hint_y: None
+    height: 30
+    text: text_input.text
+    Button:
+        size: 150, root.height
+        size_hint: None, None
+        text: 'Search'
+        on_release: FileManagerLoad.show_load()
+    TextInput:
+        color: 0, 0, 0, 1
+        id: text_input
+        text: ''
+        multiline: False
+
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            path: os.getcwd()
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+            Button:
+                text: "Accept"
+                on_release: root.load(filechooser.path, filechooser.selection) if filechooser.selection else None

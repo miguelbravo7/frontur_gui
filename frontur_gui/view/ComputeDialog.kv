@@ -1,0 +1,32 @@
+#:kivy 1.11.0
+# File name: ComputeDialog.py
+#:import ComputeDialog frontur_gui.model.ComputeDialog.ComputeDialog
+
+<ComputeDialog>:
+    container: text_output
+    continue_btn: continue_btn
+    canvas.before:
+        Color:
+            rgba: 239, 240, 241, 1   
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        TextInput:
+            border_radius: [6]
+            size_hint: 1.0, 1.0
+            text_size: root.width, None
+            color: 0, 0, 0, 1
+            id: text_output
+            readonly: True
+            text: ''
+
+        Button:
+            id: continue_btn
+            text: "Continue"
+            size_hint_y: .3
+            on_release: root.cancel()
+            disabled: True

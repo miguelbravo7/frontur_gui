@@ -1,0 +1,38 @@
+#:kivy 1.11.0
+# File name: model/Screens.py
+#:import SolverScreen frontur_gui.model.Screens.SolverScreen
+#:include frontur_gui/view/FileSolverMenu.kv
+#:include frontur_gui/view/FileSaveWidget.kv
+#:include frontur_gui/view/ComputeDialog.kv
+
+<SolverScreen>:
+    name: "solver"
+    canvas.before:
+        Color:
+            rgba: 239, 240, 241, 1   
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        FileSolverMenu:
+            id: solver_menu
+            save_btn: save    
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: 1, 0.15
+            Button: 
+                on_release: 
+                    app.root.transition = NoTransition()
+                    app.root.current = "main"
+                text: "Volver"
+                font_size: (.1 * self.height) + (self.width * .1)
+            Button: 
+                on_release: 
+                    solver_menu.run_solver()
+                text: "Ejecutar"
+                font_size: (.1 * self.height) + (self.width * .1)
+            FileManagerSave:
+                id: save
+                disabled: True
+                font_size: (.1 * self.height) + (self.width * .1)

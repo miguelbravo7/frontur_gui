@@ -1,0 +1,47 @@
+#:kivy 1.11.0
+# File name: model/Screens.py
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:import ScreenManagement frontur_gui.model.ScreenManagement.ScreenManagement
+#:import AddinInstaller frontur_gui.model.AddinInstaller.AddinInstaller
+#:import MainScreen frontur_gui.model.Screens.MainScreen
+#:include frontur_gui/view/SolverScreen.kv
+#:include frontur_gui/view/ExtractorScreen.kv
+
+ScreenManagement:
+    transition: NoTransition()
+    MainScreen:
+    ExtractorScreen:
+    SolverScreen:
+
+<MainScreen>:
+    name: "main"
+    canvas.before:
+        Color:
+            rgba: 239, 240, 241, 1   
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        Button: 
+            on_release: 
+                app.root.transition = NoTransition()
+                app.root.current = "extractor"
+            text: "Extraer informacion"
+            font_size: (.25 * self.height) + (self.width * .01)
+        Button: 
+            on_release: 
+                app.root.transition = NoTransition()
+                app.root.current = "solver"
+            text: "Seleccionar entrevistas"
+            font_size: (.25 * self.height) + (self.width * .01)
+        Button: 
+            on_release: 
+                AddinInstaller.run_installer()
+            text: "Importar Add-in"
+            font_size: (.25 * self.height) + (self.width * .01)
+        Button:
+            id: btnExit
+            text: "Salir"
+            on_release: app.stop() 
+            font_size: (.25 * self.height) + (self.width * .01)

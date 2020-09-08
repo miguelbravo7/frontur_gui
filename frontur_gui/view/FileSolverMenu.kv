@@ -1,0 +1,117 @@
+#:kivy 1.11.0
+# File name: model/FileExtractorMenu.py
+#:import FileSolverMenu frontur_gui.model.FileSolverMenu.FileSolverMenu
+#:include frontur_gui/view/FileChooserWidget.kv
+
+<FileSolverMenu>:
+    container: container
+    ScrollView:
+        StackLayout:
+            id: container
+            padding: 10
+            spacing: 5
+            size_hint: 1, None
+            height: self.minimum_height
+            orientation: 'lr-tb'
+            FileManagerLoad:
+                id: frontur
+                keyword: 'SOLVER_FILE_PATH'
+            Label:
+                text: "[color=#3c4146][b]Archivo FRONTUR[/b]\n - Descripcion:Ruta del archivo con la informacion sobre los vuelos formato csv o excel.[/color]"
+                size_hint: (None, None)
+                halign: 'left'
+                markup: True
+                size: self.texture_size
+            FileManagerLoad:
+                id: interviews
+                keyword: 'REQ_INTERVIEWS_FILE_PATH'
+            Label:
+                text: '[color=#3c4146][b]Numero de entrevistas[/b]\n - Descripcion:Ruta del archivo json con informacion sobre el numero minimo de entrevistas por estrato.[/color]'
+                size_hint: (None, None)
+                halign: 'left'
+                markup: True
+                size: self.texture_size
+            Label:
+                text: '[color=#3c4146][b]Tiempo maximo de ejecucion(min):[/b][/color]'
+                text_size: self.width, None
+                size_hint: 1, None
+                height: self.texture_size[1]
+                halign: 'left'
+                markup: True
+                size: self.texture_size
+            TextInput:
+                keyword: 'execution_time_limit'
+                size_hint_y: None
+                size_hint_x: None
+                height: 30
+                multiline: False
+            Label:
+                text: '[color=#3c4146][b]Horas diarias de trabajo:[/b][/color]'
+                text_size: self.width, None
+                size_hint: 1, None
+                height: self.texture_size[1]
+                halign: 'left'
+                markup: True
+                size: self.texture_size
+            TextInput:
+                keyword: 'workday_time'
+                size_hint_y: None
+                size_hint_x: None
+                height: 30
+                multiline: False
+            Label:
+                text: '[color=#3c4146][b]Tiempo de descanso entre entrevistas(min):[/b][/color]'
+                text_size: self.width, None
+                size_hint: 1, None
+                height: self.texture_size[1]
+                halign: 'left'
+                markup: True
+                size: self.texture_size
+            TextInput:
+                keyword: 'rest_time'
+                size_hint_y: None
+                size_hint_x: None
+                height: 30
+                multiline: False
+            Label:
+                text: '[color=#3c4146][b]Porcentaje de ocupacion(decimal normarlizado):[/b][/color]'
+                text_size: self.width, None
+                size_hint: 1, None
+                height: self.texture_size[1]
+                halign: 'left'
+                markup: True
+                size: self.texture_size
+            TextInput:
+                keyword: 'seats_used'
+                size_hint_y: None
+                size_hint_x: None
+                height: 30
+                multiline: False
+            Label:
+                text: '[color=#3c4146][b]Porcentaje de entrevistas satisfactorias(decimal normarlizado):[/b][/color]'
+                text_size: self.width, None
+                size_hint: 1, None
+                height: self.texture_size[1]
+                halign: 'left'
+                markup: True
+                size: self.texture_size
+            TextInput:
+                keyword: 'poll_success'
+                size_hint_y: None
+                size_hint_x: None
+                height: 30
+                multiline: False
+            Label:
+                text: '[color=#3c4146][b]Tiempo por entrevista(seg):[/b][/color]'
+                text_size: self.width, None
+                size_hint: 1, None
+                height: self.texture_size[1]
+                halign: 'left'
+                markup: True
+                size: self.texture_size
+            TextInput:
+                keyword: 'poll_time'
+                size_hint_y: None
+                size_hint_x: None
+                height: 30
+                multiline: False

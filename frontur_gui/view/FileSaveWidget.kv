@@ -1,0 +1,38 @@
+#:kivy 1.11.0
+# File name: FileManagerSave.py
+#:import FileManagerSave frontur_gui.model.FileManagerSave.FileManagerSave
+#:import os os
+
+<FileManagerSave>:
+    id: FileManagerSave
+    text: 'Guardar'
+    on_release: FileManagerSave.show_save()
+
+<SaveDialog>:
+    text_input: text_input
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            filters: [root.is_dir]
+            id: filechooser
+            path: os.getcwd()
+            on_selection: text_input.text = self.selection and self.selection[0] or ''
+
+        TextInput:
+            id: text_input
+            size_hint_y: None
+            height: 30
+            multiline: False
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Save"
+                on_release: root.save(filechooser.path, text_input.text)
